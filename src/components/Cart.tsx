@@ -3,6 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { BsFillCartFill } from 'react-icons/bs'
 import { Product } from '../types/item'
 import ProductsCart from './ProductsCart'
+import Checkout from './Checkout'
 
 function Cart () {
   const { itemsCart } = useCartStore()
@@ -15,7 +16,7 @@ function Cart () {
   return (
     <>
       {isOpen && (
-        <aside className="fixed flex flex-col right-0 top-0 w-80 h-screen bg-slate-100 transition-all duration-500 ease-in py-12 drop-shadow-2xl z-50 overflow-y-auto">
+        <aside className="fixed flex flex-col items-center right-0 top-0 w-96 h-screen bg-slate-100 transition-all duration-500 ease-in py-12 drop-shadow-2xl z-50 overflow-y-auto">
           <div
             className="absolute right-4 top-4 cursor-pointer"
             onClick={closeCart}
@@ -35,13 +36,14 @@ function Cart () {
               </div>
                 )
               : (
-              <div className="flex flex-col items-center justify-center w-60 mx-auto gap-4">
+              <div className="flex flex-col items-center justify-center w-full mx-auto gap-4">
                 {itemsCart.map((item: Product, i) => {
                   return <ProductsCart item={item} key={i} />
                 })}
               </div>
                 )}
           </div>
+          <Checkout />
         </aside>
       )}
     </>

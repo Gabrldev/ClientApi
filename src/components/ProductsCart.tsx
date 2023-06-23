@@ -4,15 +4,15 @@ function ProductsCart ({ item }: { item: Product }) {
   const { aumtQuantity, decrenebtQuantity } = useCartStore()
   return (
     <div
-      className="flex flex-col items-center justify-center bg-slate-300 p-2 rounded-md drop-shadow"
+      className="flex items-center justify-center rounded-md drop-shadow border border-black/20 w-10/12 px-5 py-2 gap-2"
       key={item.id}
     >
-      <img src={item.image} alt="" className="w-60 h-60 object-cover" />
-      <p>{item.title}</p>
+      <img src={item.image} alt="" className="w-10 h-10 object-cover" />
+      <p className='text-xs'>{item.title}</p>
       <p>{item.price}</p>
       <div className="flex gap-4">
         <button
-          className="bg-white px-4 shadow-md rounded-md"
+          className="bg-white h-5 px-2 shadow-md rounded-sm flex justify-center items-center font-extrabold"
           onClick={() => aumtQuantity(item)}
         >
           +
@@ -20,7 +20,7 @@ function ProductsCart ({ item }: { item: Product }) {
         <p className="font-extrabold">{item.quantity}</p>
         <button
           disabled={(item.quantity ?? 0) <= 0}
-          className="bg-white px-4 shadow-md rounded-md"
+          className="bg-white h-5 px-2 shadow-md rounded-sm flex justify-center items-center font-extrabold"
           onClick={() => decrenebtQuantity(item)}
         >
           -
