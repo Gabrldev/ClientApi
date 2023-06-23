@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { Product } from '../types/item'
 import { persist } from 'zustand/middleware'
+import { getProducts as fetchData } from '../services/product.service'
 
 interface CartStore {
   itemsCart: Product[]
@@ -122,33 +123,35 @@ export const useCart = create<Cart>((set) => ({
 
 interface Products {
   products: Product[]
+  category: string
+  minPrice: number
   getProducts: () => Promise<void>
-  filterProducts: (category: string) => void
-  filterPrices: (price: number) => void
+  setCategory: (category: string) => void
+  setMinPrice: (minPrice: number) => void
 }
-export const useProducts = create<Products>((set, get) => ({
+export const useProducts = create<Products>((set) => ({
   products: [],
+  minPrice: 0,
+  category: 'all',
   getProducts: async () => {
-    const response = await fetch('https://fakestoreapi.com/products')
-    const data = await response.json()
-    set(() => ({ products: data }))
+    const products = await fetchData()
+    set(() => ({ products }))
   },
-  filterProducts: (category: string) => {
-    if (category === 'all') {
-      set(() => ({ products: [] }))
-      void useProducts.getState().getProducts()
-    } else {
-      const filteredProducts = useProducts
-        .getState()
-        .products.filter((product) => product.category === category)
-      set(() => ({ products: filteredProducts }))
-    }
-  },
-  filterPrices: (price: number) => {
-    console.log(price)
-    const { products } = get()
-    const filteredProducts = products.filter((product) => product.price >= price)
-    console.log(filteredProducts)
-    set(() => ({ products: filteredProducts }))
-  }
+  setCategory: (category: string) => set(() => ({ category })),
+  setMinPrice: (minPrice: number) => set({ minPrice })
 }))
+
+export const useFilter = () => {
+  const { products, category, minPrice } = useProducts()
+
+  const filteredProducts = products.filter((product) => {
+    return (
+      product.price >= minPrice &&
+      (category === 'all' || product.category === category)
+    )
+  })
+
+  return {
+    filteredProducts
+  }
+}

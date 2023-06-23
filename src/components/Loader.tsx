@@ -1,0 +1,22 @@
+import ContentLoader from 'react-content-loader'
+
+const MyLoader = () => (
+  <ContentLoader
+    speed={2}
+    width={1920}
+    viewBox="0 0 1920 700"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    className='w-full h-full justify-center flex items-center'
+  >
+    <rect x="285" y="50" rx="2" ry="2" width="500" height="500" />
+    <rect x="1155" y="50" rx="2" ry="2" width="500" height="30" />
+    <rect x="1155" y="85" rx="2" ry="2" width="500" height="20" />
+    <rect x="1155" y="109" rx="2" ry="2" width="500" height="20" />
+    <rect x="1155" y="132" rx="2" ry="2" width="500" height="20" />
+    <rect x="1155" y="159" rx="2" ry="2" width="500" height="25" />
+    <rect x="1155" y="195" rx="2" ry="2" width="500" height="40" />
+  </ContentLoader>
+)
+
+export default MyLoader

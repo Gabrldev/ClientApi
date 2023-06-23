@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg{
+    width: 100vw;
+    background-image: url('../public/Screenshot_5.jpg');
+    background-color: aqua;
+    height: auto;
+}

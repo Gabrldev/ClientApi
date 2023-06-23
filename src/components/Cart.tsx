@@ -22,11 +22,11 @@ function Cart () {
           >
             <AiOutlineClose className="text-lg hover:text-gray-400 transition-colors duration-300" />
           </div>
-          <div>
+          <div className=''>
             <h2 className="text-2xl font-semibold text-center">
               SHOPPING CART
             </h2>
-            <span>{total}</span>
+            <h4 className='text-center text-2xl mb-5'>${Math.floor(total)}</h4>
             {itemsCart.length === 0
               ? (
               <div className="flex flex-col items-center justify-center mt-20">
@@ -35,7 +35,7 @@ function Cart () {
               </div>
                 )
               : (
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center w-60 mx-auto gap-4">
                 {itemsCart.map((item: Product, i) => {
                   return <ProductsCart item={item} key={i} />
                 })}

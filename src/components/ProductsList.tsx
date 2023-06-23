@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import Product from './Product'
-import { useProducts } from '../store/store'
+import { useFilter, useProducts } from '../store/store'
 
 function ProductsList () {
-  const { products, getProducts } = useProducts()
+  const { filteredProducts } = useFilter()
+  const { getProducts } = useProducts()
   useEffect(() => {
     async function fetchProducts () {
       try {
@@ -17,7 +18,7 @@ function ProductsList () {
 
   return (
     <div className="col-span-6 flex flex-wrap gap-4 justify-center py-6">
-      {products.map((product) => {
+      {filteredProducts.map((product) => {
         return <Product product={product} key={product.id} />
       })}
     </div>
