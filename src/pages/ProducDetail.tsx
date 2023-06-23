@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Product as ProductType } from '../types/item'
 import { useCartStore } from '../store/store'
 import { getProduct } from '../services/product.service'
-import MyLoader from '../components/Loader'
+import { MyLoader } from '../components/Loader'
 function ProducDetail () {
   const [isloading, setIsLoading] = useState(true)
   const { productId } = useParams()
@@ -27,10 +27,6 @@ function ProducDetail () {
   }, [productId])
 
   return (
-    // <div className="bg">
-    //   <MyLoader />
-    // </div>
-
   <>
     {isloading
       ? (
